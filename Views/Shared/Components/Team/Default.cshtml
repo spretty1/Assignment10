@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Team>
+
+<!--dynamically allows a header to be created for each team when selected-->
+<h3>@ViewBag.SelectedCategory</h3>
+
+<!--a home button to allow the user to see all the bowlers no matter what team they are on-->
+<a class="btn btn-block btn-outline-secondary" asp-action="Index" asp-controller="Home" asp-route-teamid="">Home</a>
+<br />
+
+<!--loops through to create each filter for the teams-->
+@foreach (var x in Model)
+{
+    <a class="btn btn-block @(x.TeamName == ViewBag.SelectedCategory ? "btn-primary" : "btn-outline-secondary")"
+       asp-action="Index" asp-controller="Home" asp-route-teamid="@x.TeamId" asp-route-team="@x.TeamName">@x.TeamName</a>
+    <br />
+}   
